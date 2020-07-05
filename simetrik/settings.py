@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import glob
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,6 +21,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'jh(^a9mf#($j2gj$o%i3&-t=bkzi4&o(j#melkt18p8&vk_v+7'
+
+conffiles = glob.glob(os.path.join(os.path.dirname(__file__), 'config', '*.conf'))
+conffiles.sort()
+for f in conffiles:
+    try:
+        execfile(os.path.abspath(f))
+    except Exception:
+        exec(open(os.path.abspath(f)).read())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -69,16 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'simetrik.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
