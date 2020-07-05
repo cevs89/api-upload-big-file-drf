@@ -28,7 +28,7 @@ changes_password = UserProfileViewSet.as_view({'put': 'change_password'})
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/user/obtain_token/', ObtainTokenCustom.as_view()),
-    path('api/v1/users/change_password/<int:pk>', changes_password),
+    path('api/v1/users/change_password/<int:pk>/', changes_password),
 
     path('api/v1/', include(router.urls)),
 
