@@ -15,7 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+from django.urls import include
+from users.views import ObtainTokenCustom, UserProfileViewSet
+
+
+router = DefaultRouter()
+router.register(r'users', UserProfileViewSet, basename='user')
+
+changes_password = UserProfileViewSet.as_view({'put': 'change_password'})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/user/obtain_token/', ObtainTokenCustom.as_view()),
+    path('api/v1/users/change_password/<int:pk>', changes_password),
+
+    path('api/v1/', include(router.urls)),
+
 ]
