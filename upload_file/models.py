@@ -13,6 +13,13 @@ Storage (GCP)
 Guardar un archivo se tiene mas control del mismo, sin contar el nombre del archivo
 puede ser un nombre con espacios, caracteres especiales y mas, siempre es recomendable
 cambiar dicho nombre por un estándar, yo le asigno un dato uuid.
+
+Decidi guardar el separador del archivo .CSV ya que en mi experiencia eh encontrado
+archivos .csv separados con: (,), (;), (|).
+
+Esto se debe a que muchas veces las empresas trabajan con sistemas administrativos
+como SAP, SAINT u otros del mercado y este sistema exporta los archivos .CSV
+con un deparador ya definido.
 """
 
 

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from upload_file.models import FileUploadCSV
+from django.core.files.base import ContentFile
 
 
 class UploadFileService:
@@ -31,8 +32,7 @@ class UploadFileService:
 
         return query_file
 
-    def save(self, request_user, data):
-        get_file = data['file_upload']
+    def save(self, request_user, data, df):
         get_separator = data['separator']
 
         try:
@@ -40,9 +40,14 @@ class UploadFileService:
         except User.DoesNotExist:
             raise ValueError("User Does not exists")
 
-        query_file = FileUploadCSV()
-        query_file.user_upload = query_user
-        query_file.file_upload = get_file
-        query_file.separator = get_separator
-        query_file.save()
+        file_save = ContentFile(str(df), 'file_save.csv')
+        try:
+            query_file = FileUploadCSV()
+            query_file.user_upload = query_user
+            query_file.file_upload = file_save
+            query_file.separator = get_separator
+            query_file.save()
+        except Exception as e:
+            raise ValueError(str(e))
+
         return query_file

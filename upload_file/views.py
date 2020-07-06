@@ -73,12 +73,13 @@ class UploadFileViewSet(ListModelMixin, viewsets.ModelViewSet):
         get_validation = ValidateUploadFile()
 
         try:
-            get_validation.file(request.data)
+            file_validate = get_validation.file(request.data)
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            date_file = self.service_file.save(request.user.id, request.data)
+            date_file = self.service_file.save(
+                request.user.id, request.data, file_validate)
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
