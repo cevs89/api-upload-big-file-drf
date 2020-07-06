@@ -11,6 +11,7 @@ from upload_file.models import FileUploadCSV
 from upload_file.validators import ValidateUploadFile
 from upload_file.serializers import UploadFileSerializer
 from upload_file.service import UploadFileService
+from upload_file.save_transactions import SaveClientTransactions
 
 
 class ResultsSetPagination(PageNumberPagination):
@@ -80,6 +81,16 @@ class UploadFileViewSet(ListModelMixin, viewsets.ModelViewSet):
         try:
             date_file = self.service_file.save(
                 request.user.id, request.data, file_validate)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+
+        # Save file, external DB
+        """
+        Este proceso deberia ser una tarea en segun plano manejado con Celery
+        """
+        service_transactions = SaveClientTransactions()
+        try:
+            service_transactions.process_item(date_file)
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 

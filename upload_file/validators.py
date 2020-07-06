@@ -64,7 +64,7 @@ class ValidateUploadFile:
             header_garbage = ValidateHeaderGarbage(header_valid, headers)
 
             if header_missing is True and header_garbage is True:
-                return str(df.to_csv(header=True, index=False))
+                return str(df.to_csv(header=True, index=False, sep=get_separator))
             else:
                 # header_missing lista de encabezado que falta
                 # header_garbage lista de encabezado que no es requerido

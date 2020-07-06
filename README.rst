@@ -7,14 +7,17 @@ Virtual environment
 
 Step 1
 -----------------
+.. :: python
 `virtualenv <path> --python=python3`
 
 Step 2
 -----------------
+.. :: python
 `source <path>/bin/activate`
 
 Step 3
 -----------------
+.. :: python
 `pip install -r requeriments.txt`
 
 
@@ -34,4 +37,11 @@ Note: In these file you can put any settings you need, just should not be repeat
 
 To generate the database, the following command is executed:
 ==============
+.. :: python
 `python manage.py migrate`
+
+
+Generate external database - (SQLalchemy)
+==============
+.. :: python
+`python db_setup.py`
