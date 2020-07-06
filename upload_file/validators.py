@@ -57,14 +57,14 @@ class ValidateUploadFile:
             en la DB, asi pueden ser administrados en cualquier momento.
             """
             header_valid = [
-                "transaction_id", "transaction_dste", "transaction_amount",
+                "transaction_id", "transaction_date", "transaction_amount",
                 "client_id", "client_name"]
 
             header_missing = ValidateHeaderMissing(header_valid, headers)
             header_garbage = ValidateHeaderGarbage(header_valid, headers)
 
             if header_missing is True and header_garbage is True:
-                return str(df)
+                return str(df.to_csv(header=True, index=False))
             else:
                 # header_missing lista de encabezado que falta
                 # header_garbage lista de encabezado que no es requerido
