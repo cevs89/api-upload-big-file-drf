@@ -25,7 +25,7 @@ class ObtainTokenCustom(ObtainAuthToken):
             except User.DoesNotExist:
                 return Response(
                     {'message': 'Username does not exist'},
-                    status=status.HTTP_400_BAD_REQUEST
+                    status=status.HTTP_404_NOT_FOUND
                     )
 
             if serializer.is_valid():
@@ -43,7 +43,8 @@ class ObtainTokenCustom(ObtainAuthToken):
                 status=status.HTTP_400_BAD_REQUEST
              )
         else:
-            return Response(get_validation.errors())
+            return Response(
+                get_validation.errors(), status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserProfileViewSet(viewsets.ViewSet):
@@ -86,7 +87,8 @@ class UserProfileViewSet(viewsets.ViewSet):
                     serializer.data, status=status.HTTP_200_OK
                 )
         else:
-            return Response(get_validation.errors())
+            return Response(
+                get_validation.errors(), status=status.HTTP_400_BAD_REQUEST)
 
     def change_password(self, request, pk=None):
         get_validation = ValidateChangePassword(request.data)
@@ -111,4 +113,5 @@ class UserProfileViewSet(viewsets.ViewSet):
                     serializer.data, status=status.HTTP_200_OK
                 )
         else:
-            return Response(get_validation.errors())
+            return Response(
+                get_validation.errors(), status=status.HTTP_400_BAD_REQUEST)

@@ -1,6 +1,6 @@
 Basic Requirements:
 ==============
-`>= Python 3x`
+``>= Python 3x``
 
 Virtual environment
 ==============
@@ -8,26 +8,26 @@ Virtual environment
 Step 1
 -----------------
 .. :: python
-`virtualenv <path> --python=python3`
+``virtualenv <path> --python=python3``
 
 Step 2
 -----------------
 .. :: python
-`source <path>/bin/activate`
+``source <path>/bin/activate``
 
 Step 3
 -----------------
 .. :: python
-`pip install -r requeriments.txt`
+``pip install -r requeriments.txt``
 
 
 Config database:
 ==============
-See folder: `simetrik/config`
+See folder: ``simetrik/config``
 
-You will find a file: `local.example`
+You will find a file: ``local.example``
 
-Copy that file and change the extention to the new file, like this: `local.conf`
+Copy that file and change the extention to the new file, like this: ``local.conf``
 
 the file `local.conf` is your new file config local.
 If neccesary must by change content by your config local or the production server
@@ -38,25 +38,31 @@ Note: In these file you can put any settings you need, just should not be repeat
 To generate the database, the following command is executed:
 ==============
 .. :: python
-`python manage.py migrate`
+``python manage.py migrate``
 
 
 Generate external database - (SQLalchemy)
 ==============
 .. :: python
-`python db_setup.py`
+``python db_setup.py``
 
 
 Loaddata Users
 ==============
 There is a default user:
 
-`username: simetrik`
-`password: backend-1234`
+======== ========
+username password
+simetrik backend-1234
+======== ========
 
 You can use it to request your access token.
 
-you can load this user with the following command
 
+you can load this user with the following command:
+-----------------
 .. :: python
-`python manage.py loaddata fixtures/users.json`
+```python manage.py loaddata fixtures/users.json``
+
+
+.. _Documentation API: https://gist.github.com/cevs89/2e0a73d4df16e4d6ac13dc27f5e6c458
