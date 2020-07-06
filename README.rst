@@ -45,3 +45,18 @@ Generate external database - (SQLalchemy)
 ==============
 .. :: python
 `python db_setup.py`
+
+
+Loaddata Users
+==============
+There is a default user:
+
+`username: simetrik`
+`password: backend-1234`
+
+You can use it to request your access token.
+
+you can load this user with the following command
+
+.. :: python
+`python manage.py loaddata fixtures/users.json`

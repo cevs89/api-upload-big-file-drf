@@ -31,7 +31,7 @@ changes_password = UserProfileViewSet.as_view({'put': 'change_password'})
 router.register(r'upload_files', UploadFileViewSet, basename='upload_file')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
     path('api/v1/user/obtain_token/', ObtainTokenCustom.as_view()),
     path('api/v1/users/change_password/<int:pk>/', changes_password),
 
