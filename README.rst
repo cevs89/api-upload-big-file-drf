@@ -65,4 +65,7 @@ you can load this user with the following command:
 ```python manage.py loaddata fixtures/users.json``
 
 
-.. _Documentation API: https://gist.github.com/cevs89/2e0a73d4df16e4d6ac13dc27f5e6c458
+Documentation API:
+-----------------
+
+https://gist.github.com/cevs89/2e0a73d4df16e4d6ac13dc27f5e6c458
